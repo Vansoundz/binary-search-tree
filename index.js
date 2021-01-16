@@ -86,17 +86,17 @@ class Node {
     }
   }
 
-  ptrav(root){
+  static preOrderTrav(root){
     if(root === null){
       return
     }else {
       console.log(root.data)
-      this.ptrav(root.left)
-      this.ptrav(root.right)
+      Node.preOrderTrav(root.left)
+      Node.preOrderTrav(root.right)
     }
   }
 
-  ltrav(root){
+  static levelTrav(root){
     if(!root) return 
     let que = [root]
 
@@ -109,16 +109,29 @@ class Node {
     }
   }
 
-  ttrav(root){
+  static postTrav(root){
     if(!root) return
     else{
-      this.ttrav(root.left)
-      this.ttrav(root.right)
+      Node.postTrav(root.left)
+      Node.postTrav(root.right)
       console.log(root.data)
     }
   }
 
-   isBST(root,min = -100, max = 100){
+  static inOrderTrav(root){
+    if(!root) return
+    else{
+      Node.inOrderTrav(root.left)
+      console.log(root.data)
+      Node.inOrderTrav(root.right)
+    }
+  }
+
+  
+
+
+
+  isBST(root,min = -100, max = 100){
       
     if(root === null)
       return true
@@ -187,5 +200,14 @@ t.insert(23)
 // console.log("post order")
 // t.ttrav(t)
 // console.log(a)
-console.log(t.isBST(t))
-console.log(a.isBST(a))
+console.log("in order")
+Node.inOrderTrav(t)
+console.log("pre order")
+Node.preOrderTrav(t)
+console.log("post order")
+Node.postTrav(t)
+console.log("level order")
+Node.levelTrav(t)
+
+// console.log(t.isBST(t))
+// console.log(a.isBST(a))
