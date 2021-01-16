@@ -127,8 +127,53 @@ class Node {
     }
   }
 
-  
+  iPreOrderTrav(){
+    let root = this
+    let stack = [root]
 
+    while(stack.length > 0){
+      let el = stack.pop()
+      console.log(el.data)
+      if(el.right) stack.push(el.right)
+      if(el.left) stack.push(el.left)
+    }
+  }
+
+  iPostOrderTrav(){
+    let root = this
+    let stack = [root]
+    let st = []
+    let i = 0
+
+    while(stack.length){
+      let el = stack.pop()
+      st.push(el)
+      if(el.left) stack.push(el.left)
+      if(el.right) stack.push(el.right)
+    }
+
+    while(st.length){
+      let el = st.pop()
+      console.log(el.data)
+    }
+  }
+
+  iInOrderTrav(){
+    let root = this
+    let stack = []
+    let c = []
+
+    while(root !== null || stack.length > 0){
+      while(root !== null){
+        stack.push(root)
+        root = root.left
+      }
+
+      let el = stack.pop()
+      console.log(el.data)
+      root = el.right
+    }
+  }
 
 
   isBST(root,min = -100, max = 100){
@@ -202,12 +247,18 @@ t.insert(23)
 // console.log(a)
 console.log("in order")
 Node.inOrderTrav(t)
+console.log("iterative")
+t.iInOrderTrav()
 console.log("pre order")
 Node.preOrderTrav(t)
+console.log("iterative")
+t.iPreOrderTrav()
 console.log("post order")
 Node.postTrav(t)
-console.log("level order")
-Node.levelTrav(t)
+console.log("iterative")
+t.iPostOrderTrav()
+// console.log("level order")
+// Node.levelTrav(t)
 
 // console.log(t.isBST(t))
 // console.log(a.isBST(a))
