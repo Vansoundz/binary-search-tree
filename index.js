@@ -2,6 +2,7 @@ class Node {
   data;
   left;
   right;
+  bf
 
   constructor(d){
     this.data = d
@@ -23,6 +24,26 @@ class Node {
         return this.left.insert(data)
       }else this.left = this.createNode(data)
     }
+  }
+
+  delete(root, data){
+    if(!root) return root;
+    if(data < root.data) root.left = this.delete(root.left, data)
+    else if(data > root.data) root.right = this.delete(root.right, data)
+    else{
+      if(!root.left && !root.right){
+        root = null
+      }else if(!root.right){
+        root = root.left
+      }else if(!root.left){
+        root = root.right
+      }else {
+        let min = this.minRec(root.right)
+        root.data = min
+        root.right = this.delete(root.right, min)
+      }
+    }
+    return root
   }
 
   find (data) {
@@ -175,7 +196,6 @@ class Node {
     }
   }
 
-
   isBST(root,min = -100, max = 100){
       
     if(root === null)
@@ -196,15 +216,6 @@ class Node {
     return this.isBST(root, -1000, 1000)
   }
 
-  altBST(root, min = -1000, max = 1000){
-    if(root === null) return true
-    if(!root.right || !root.left)
-      return true
-    if(root.data <= max && root.data > min &&
-    this.altBST(root.left, min, root.data) && !this.altBST(root.right, root.data, max)
-    ) return true
-    return false
-  }
 }
 
 let t = new Node(20)
@@ -223,7 +234,6 @@ t.insert(24)
 t.insert(9)
 t.insert(31)
 t.insert(8)
-t.insert(10)
 t.insert(26)
 t.insert(22)
 t.insert(21)
@@ -235,11 +245,11 @@ t.insert(23)
 // console.log(t.max())
 // console.log(t.minRec(t))
 // console.log(t.maxRec(t))
-// console.log(t.maxHeight(t))
+console.log(t.maxHeight(t))
 // console.log(t)
 // t.print(t)
-// console.log("Pre order")
-// t.ptrav(t)
+// console.log("pre order")
+// Node.preOrderTrav(t)
 // console.log("level order")
 // t.ltrav(t)
 // console.log("post order")
@@ -247,18 +257,25 @@ t.insert(23)
 // console.log(a)
 console.log("in order")
 Node.inOrderTrav(t)
-console.log("iterative")
-t.iInOrderTrav()
-console.log("pre order")
-Node.preOrderTrav(t)
-console.log("iterative")
-t.iPreOrderTrav()
-console.log("post order")
-Node.postTrav(t)
-console.log("iterative")
-t.iPostOrderTrav()
+console.log("Delete")
+t.delete(t, 20)
+t.delete(t, 22)
+console.log(t.data)
+console.log("in order")
+Node.inOrderTrav(t)
+// console.log("iterative")
+// t.iInOrderTrav()
+// console.log("pre order")
+// Node.preOrderTrav(t)
+// console.log("iterative")
+// t.iPreOrderTrav()
+// console.log("post order")
+// Node.postTrav(t)
+// console.log("iterative")
+// t.iPostOrderTrav()
 // console.log("level order")
 // Node.levelTrav(t)
 
 // console.log(t.isBST(t))
 // console.log(a.isBST(a))
+console.log(t.maxHeight(t))
