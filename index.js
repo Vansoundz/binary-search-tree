@@ -1,34 +1,33 @@
-const Node = require("./bst.js")
-const AVL = require("./avl.js")
+const Node = require('./bst.js');
+const AVL = require('./avl.js');
 
-let t = new AVL(20)
-let u = new AVL(10)
-let a = new Node(10)
-a.left = new Node(5)
-a.right = new Node(16)
-a.left.left = new Node(4)
-a.left.right = new Node(7)
-a.left.left.right = new Node(6)
-a.left.left.left = new Node(3)
+let t = new AVL(20);
+let u = new AVL(10);
+let a = new Node(10);
+a.left = new Node(5);
+a.right = new Node(16);
+a.left.left = new Node(4);
+a.left.right = new Node(7);
+a.left.left.right = new Node(6);
+a.left.left.left = new Node(3);
 
-t.insertLoop(30)
-t.insertLoop(10)
-t.insertLoop(15)
-t.insertLoop(24)
-t.insert(9)
-t.insert(31)
-t.insert(8)
-t.insert(26)
-t.insert(22)
-t.insert(21)
-t.insert(23)
+t.insertLoop(30);
+t.insertLoop(10);
+t.insertLoop(15);
+t.insertLoop(24);
+t.insert(9);
+t.insert(31);
+t.insert(8);
+t.insert(26);
+t.insert(22);
+t.insert(21);
+t.insert(23);
 
-t.iInOrderTrav(t)
+t.iInOrderTrav(t);
 
-t.delete(t, 9)
+t.delete(t, 9);
 
-t.iInOrderTrav(t)
-
+t.iInOrderTrav(t);
 
 // u.insert(12)
 // u.insert(8)
@@ -38,8 +37,6 @@ t.iInOrderTrav(t)
 // u.insert(16)
 // u.insert(17)
 // u.insert(9)
-
-
 
 // console.log(t.find(21))
 // console.log(t.min())
@@ -69,10 +66,7 @@ t.iInOrderTrav(t)
 // console.log(t.data)
 // console.log("in order")
 // Node.inOrderTrav(t)
-// console.log("iterative")
-// t.iInOrderTrav()
-// console.log("pre order")
-// Node.preOrderTrav(t)
+// console.log("up(t)
 // console.log("iterative")
 // t.iPreOrderTrav()
 // console.log("post order")
